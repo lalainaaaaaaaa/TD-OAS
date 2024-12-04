@@ -18,7 +18,7 @@ paths:
             type: string
         - name: releaseDate
           in: query
-          description: Filter by release date range (e.g., start and end dates)
+          description: Filter by release date range 
           required: false
           schema:
             type: string
@@ -32,3 +32,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
+post:
+      summary: Add a new author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '201':
+          description: Author created successfully
+    
