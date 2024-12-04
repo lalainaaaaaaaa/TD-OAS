@@ -72,3 +72,33 @@ paths:
       responses:
         '204':
           description: Author deleted successfully
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+        bookName:
+          type: string
+        authorId:
+          type: integer # using FK
+        pageNumbers:
+          type: integer 
+        topic:
+          type: string 
+          enum: [ROMANCE, COMEDY, OTHER]
+        releaseDate:
+          type: string 
+          format: date
+
+    Author:
+      type: object 
+      properties:
+        id:
+          type: integer 
+        name:
+          type: string 
+        sex:
+          type: string 
+          enum: [M, F]
