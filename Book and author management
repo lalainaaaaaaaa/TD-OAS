@@ -38,4 +38,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
- 
+ post:
+      summary: Add a new author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '201':
+          description: Author created successfully
+    put:
+      summary: Update an existing author 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '200':
+          description: Author updated successfully
