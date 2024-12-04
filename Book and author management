@@ -33,24 +33,36 @@ paths:
                 items:
                   $ref: '#/components/schemas/Book'
     post:
-      summary: Add a new author
+      summary: Add a new book
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/Book'
       responses:
         '201':
-          description: Author created successfully
+          description: Book created successfully
     put:
-      summary: Update an existing author (idempotent)
+      summary: Update an existing book (idempotent)
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/Book'
       responses:
         '200':
-          description: Author updated successfully
+          description: Book updated successfully
+    delete:
+      summary: Delete a book by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the book to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Book deleted successfully
