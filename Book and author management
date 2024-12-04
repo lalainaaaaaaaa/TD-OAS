@@ -60,3 +60,15 @@ paths:
       responses:
         '200':
           description: Author updated successfully
+    delete:
+      summary: Delete an author by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the author to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Author deleted successfully
