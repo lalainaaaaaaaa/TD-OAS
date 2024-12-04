@@ -1,2 +1,1 @@
-# TD-OAS
-OpenAPI Specification
+# Library Management API
