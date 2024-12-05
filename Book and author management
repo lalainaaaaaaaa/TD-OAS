@@ -1,27 +1,77 @@
-openapi: 3.1.0
-info:
-  title: Library Management API
-  description: API for managing books and authors in a library system.
-  version: 1.0.0
+openapi: 3.0.0
 servers:
-  - url: http://localhost:8080/api
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HEILALAINA3/OnyLalaina/1.0.0
+info:
+  version: "1.0.0"
+  title: home-iot-api
+  description: The API for the EatBacon IOT project
 paths:
-  /books:
+  /group:
     get:
-      summary: Retrieve a list of books
+      summary: List of student
       parameters:
-        - name: bookName
+        - name: studentName
           in: query
-          description: Filter by book name
+          description: LibraryManagement
           required: false
           schema:
             type: string
-        - name: releaseDate
+        - name: id
           in: query
-          description: Filter by release date range 
- /authors:
+          description: idGroup
+          required: false
+          schema:
+            type: string
+            format: number
+      responses:
+        '200':
+          description: LibraryManagement
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: LibraryManagement
+    put:
+      summary: Update an existing student(idempotent)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Student updated successfully
+    delete:
+      summary: Delete a student by ID
+      parameters:
+        - name: idStudent
+          in: path
+          required: true
+          description: ID of the student to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: group deleted successfully
+
+  /student:
     get:
-      summary: Retrieve a list of authors
+      summary: Retrieve a list of student
       parameters:
         - name: authorName
           in: query
@@ -38,8 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
- post:
-      summary: Add a new author
+    post:
+      summary: Add a new student
       requestBody:
         required: true
         content:
@@ -48,9 +98,9 @@ paths:
               $ref: '#/components/schemas/Author'
       responses:
         '201':
-          description: Author created successfully
+          description: Student created successfully
     put:
-      summary: Update an existing author 
+      summary: Update an existing student 
       requestBody:
         required: true
         content:
@@ -61,17 +111,18 @@ paths:
         '200':
           description: Author updated successfully
     delete:
-      summary: Delete an author by ID
+      summary: Delete a srudent by ID
       parameters:
         - name: id
           in: path
           required: true
-          description: ID of the author to delete
+          description: ID of the student to delete
           schema:
             type: integer
       responses:
         '204':
-          description: Author deleted successfully
+          description: Student deleted successfully
+
 components:
   schemas:
     Book:
