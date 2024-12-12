@@ -1,155 +1,144 @@
-openapi: 3.0.0
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/HEILALAINA3/OnyLalaina/1.0.0
+openapi: 3.1.0
 info:
-  version: "1.0.0"
-  title: home-iot-api
-  description: The API for the EatBacon IOT project
+  title: Student Course Management API
+  version: 1.0.0
 paths:
-  /group:
+  /groups:
     get:
-      summary: List of student
+      summary: Retrieve a list of groups
+      parameters:
+        - name: groupName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: groupYear
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: A list of groups
+    post:
+      summary: Create a new group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupName:
+                  type: string
+                groupYear:
+                  type: string
+                promotion:
+                  type: string
+                  enum: [G, H, J, K]
+                studentNb:
+                  type: integer
+                students:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Group created
+    put:
+      summary: Update an existing group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupName:
+                  type: string
+                groupYear:
+                  type: string
+                promotion:
+                  type: string
+                  enum: [G, H, J, K]
+                studentNb:
+                  type: integer
+                students:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '204':
+          description: Group updated
+    delete:
+      summary: Delete a group
+      responses:
+        '204':
+          description: Group deleted
+
+  /students:
+    get:
+      summary: Retrieve a list of students
       parameters:
         - name: studentName
           in: query
-          description: LibraryManagement
           required: false
           schema:
             type: string
-        - name: id
-          in: query
-          description: idGroup
-          required: false
-          schema:
-            type: string
-            format: number
       responses:
         '200':
-          description: LibraryManagement
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          description: A list of students
     post:
-      summary: name
+      summary: Create a new student
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              type: object
+              properties:
+                name:
+                  type: string
+                sex:
+                  type: string
+                  enum: [M, F]
+                birthdate:
+                  type: string
+                  format: date
+                reference:
+                  type: string
+                group:
+                  type: string
       responses:
         '201':
-          description: LibraryManagement
+          description: Student created
     put:
-      summary: Update an existing student(idempotent)
+      summary: Update an existing student
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
-      responses:
-        '200':
-          description: Student updated successfully
-    delete:
-      summary: Delete a student by ID
-      parameters:
-        - name: idStudent
-          in: path
-          required: true
-          description: ID of the student to delete
-          schema:
-            type: integer
+              type: object
+              properties:
+                name:
+                  type: string
+                sex:
+                  type: string
+                  enum: [M, F]
+                birthdate:
+                  type: string
+                  format: date
+                reference:
+                  type: string
+                group:
+                  type: string
       responses:
         '204':
-          description: group deleted successfully
-
-  /student:
-    get:
-      summary: Retrieve a list of student
-      parameters:
-        - name: authorName
-          in: query
-          description: Filter by author name
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A list of authors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
-    post:
-      summary: Add a new student
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Author'
-      responses:
-        '201':
-          description: Student created successfully
-    put:
-      summary: Update an existing student 
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Author'
-      responses:
-        '200':
-          description: Author updated successfully
+          description: Student updated
     delete:
-      summary: Delete a srudent by ID
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the student to delete
-          schema:
-            type: integer
+      summary: Delete a student
       responses:
         '204':
-          description: Student deleted successfully
-
-components:
-  schemas:
-    Book:
-      type: object
-      properties:
-        id:
-          type: integer
-        bookName:
-          type: string
-        authorId:
-          type: integer # using FK
-        pageNumbers:
-          type: integer 
-        topic:
-          type: string 
-          enum: [ROMANCE, COMEDY, OTHER]
-        releaseDate:
-          type: string 
-          format: date
-
-    Author:
-      type: object 
-      properties:
-        id:
-          type: integer 
-        name:
-          type: string 
-        sex:
-          type: string 
-          enum: [M, F]
+          description: Student deleted
