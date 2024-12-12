@@ -1,0 +1,6 @@
+Pourquoi la pagination est-elle nécessaire ?
+    La pagination aide à gérer de grands ensembles de données en les décomposant en morceaux plus petits et plus gérables, améliorant les performances et l'expérience utilisateur.
+
+Mouillage de la pagination via des en-têtes
+    Pouvons-nous gérer la pagination par l'intermédiaire des en-têtes ? Oui, la pagination peut être gérée par des en-têtes en utilisant des en-têtes personnalisés pour indiquer la page et la taille, mais elle est moins intuitive que l'utilisation de paramètres de requête.
+    Devons-nous gérer la pagination par l'intermédiaire des en-têtes ? Il n'est pas nécessaire; l'utilisation des paramètres de requête est plus standard et conviviale car elle permet une manipulation et une visibilité plus faciles de la pagination dans les URL.
